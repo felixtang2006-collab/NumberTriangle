@@ -1,7 +1,5 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -79,9 +77,9 @@ public class NumberTriangle {
      * Follow path through this NumberTriangle structure ('l' = left; 'r' = right) and
      * return the root value at the end of the path. An empty string will return
      * the root of the NumberTriangle.
-     *
+     * <p>
      * You can decide if you want to use a recursive or an iterative approach in your solution.
-     *
+     * <p>
      * You can assume that:
      *      the length of path is less than the height of this NumberTriangle structure.
      *      each character in the string is either 'l' or 'r'
@@ -105,23 +103,24 @@ public class NumberTriangle {
     }
 
     /** Read in the NumberTriangle structure from a file.
-     *
+     * <p>
      * You may assume that it is a valid format with a height of at least 1,
      * so there is at least one line with a number on it to start the file.
-     *
+     * <p>
      * See resources/input_tree.txt for an example NumberTriangle format.
      *
      * @param fname the file to load the NumberTriangle structure from
      * @return the topmost NumberTriangle object in the NumberTriangle structure read from the specified file
      * @throws IOException may naturally occur if an issue reading the file occurs
      */
+    @SuppressWarnings("unchecked")
     public static NumberTriangle loadTriangle(String fname) throws IOException {
         // open the file and get a BufferedReader object whose methods
         // are more convenient to work with when reading the file contents.
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
-        List<NumberTriangle> prevRow = new ArrayList();
+        ArrayList<NumberTriangle> prevRow = new ArrayList();
 
         // will need to return the top of the NumberTriangle,
         // so might want a variable for that.
@@ -131,7 +130,7 @@ public class NumberTriangle {
         while (line != null) {
 
             String[] parts = line.trim().split("\\s+");
-            List<NumberTriangle> currRow = new ArrayList<>();
+            ArrayList<NumberTriangle> currRow = new ArrayList<>();
 
             for (String p : parts) {
                 currRow.add(new NumberTriangle(Integer.parseInt(p)));
