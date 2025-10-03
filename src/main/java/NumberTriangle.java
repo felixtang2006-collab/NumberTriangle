@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -113,14 +114,14 @@ public class NumberTriangle {
      * @return the topmost NumberTriangle object in the NumberTriangle structure read from the specified file
      * @throws IOException may naturally occur if an issue reading the file occurs
      */
-    @SuppressWarnings("unchecked")
     public static NumberTriangle loadTriangle(String fname) throws IOException {
         // open the file and get a BufferedReader object whose methods
         // are more convenient to work with when reading the file contents.
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
+        assert inputStream != null;
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
-        ArrayList<NumberTriangle> prevRow = new ArrayList();
+        List<NumberTriangle> prevRow = new ArrayList<>();
 
         // will need to return the top of the NumberTriangle,
         // so might want a variable for that.
@@ -130,7 +131,7 @@ public class NumberTriangle {
         while (line != null) {
 
             String[] parts = line.trim().split("\\s+");
-            ArrayList<NumberTriangle> currRow = new ArrayList<>();
+            List<NumberTriangle> currRow = new ArrayList<>();
 
             for (String p : parts) {
                 currRow.add(new NumberTriangle(Integer.parseInt(p)));
